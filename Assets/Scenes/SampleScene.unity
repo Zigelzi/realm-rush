@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (1)
+      value: Tile_1_0
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -189,7 +189,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (7)
+      value: Tile_2_1
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -246,7 +246,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (13)
+      value: Tile_2_3
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -303,7 +303,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (8)
+      value: Tile_0_2
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -360,7 +360,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (11)
+      value: Tile_3_2
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -417,7 +417,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (10)
+      value: Tile_1_2
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -474,7 +474,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (3)
+      value: Tile_3_0
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -623,7 +623,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (5)
+      value: Tile_3_1
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -680,7 +680,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (6)
+      value: Tile_0_1
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -820,7 +820,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (4)
+      value: Tile_1_1
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -877,7 +877,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (15)
+      value: Tile_0_3
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -934,7 +934,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (2)
+      value: Tile_2_0
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -991,7 +991,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (14)
+      value: Tile_1_3
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -1048,7 +1048,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (9)
+      value: Tile_2_2
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -1105,7 +1105,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile (12)
+      value: Tile_3_3
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -1162,7 +1162,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
-      value: Tile
+      value: Tile_0_0
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
