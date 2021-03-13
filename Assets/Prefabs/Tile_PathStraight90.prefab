@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5296096335851137151, guid: 853139678c6185944916b69eed76cbfa, type: 3}
       propertyPath: m_Name
-      value: Tile_0_0
+      value: Tile_PathStraight90
       objectReference: {fileID: 0}
     - target: {fileID: 7403417186573381743, guid: 853139678c6185944916b69eed76cbfa, type: 3}
       propertyPath: m_LocalRotation.w

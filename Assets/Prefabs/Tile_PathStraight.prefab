@@ -1,17 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3093553269371050506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5296096335851137151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d68b88010c8a214da99181835fe8469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5671886217743958775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26,6 +14,10 @@ PrefabInstance:
     - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_Name
       value: Tile_PathStraight
+      objectReference: {fileID: 0}
+    - target: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
+      propertyPath: m_TagString
+      value: Path
       objectReference: {fileID: 0}
     - target: {fileID: 561003785455381129, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
       propertyPath: m_RootOrder
@@ -75,10 +67,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathMesh
       objectReference: {fileID: 0}
+    - target: {fileID: 7605117525578490887, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
+      propertyPath: isPlaceable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
---- !u!1 &5296096335851137151 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 561003785455381128, guid: 17356d71a28d77d448ce2e861f05e66c, type: 3}
-  m_PrefabInstance: {fileID: 5671886217743958775}
-  m_PrefabAsset: {fileID: 0}
