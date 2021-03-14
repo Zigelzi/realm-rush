@@ -6,13 +6,19 @@ using TMPro;
 [ExecuteAlways]
 public class CoordinateHandler : MonoBehaviour
 {
-    private TextMeshPro cubeText;
+    [SerializeField] Color defaultColor = Color.white;
+    [SerializeField] Color placedColor = Color.gray;
+
+    private TextMeshPro tileText;
     private Vector2Int coordinates = new Vector2Int();
+
+    private Tile tile;
     // Start is called before the first frame update
     void Awake()
     {
-        cubeText = GetComponent<TextMeshPro>();
-        SetCubeText();
+        tileText = GetComponent<TextMeshPro>();
+        tile = GetComponentInParent<Tile>();
+        SetTileText();
         
     }
 
@@ -20,17 +26,40 @@ public class CoordinateHandler : MonoBehaviour
     {
        if (!Application.isPlaying)
         {
-            SetCubeText();
+            SetTileText();
             SetGameObjectNameToCoordinate();
         }
+
+       if (Debug.isDebugBuild  && Input.GetKeyUp(KeyCode.Z))
+        {
+            ToggleCoordinates();
+        }
+
+        SetTileColour();
     }
 
-    private void SetCubeText()
+    private void SetTileText()
     {
         float grizSize = UnityEditor.EditorSnapSettings.move.x;
         coordinates.x = Mathf.RoundToInt(transform.parent.position.x / grizSize);
         coordinates.y = Mathf.RoundToInt(transform.parent.position.z / grizSize); 
-        cubeText.text = $"{coordinates.x}, {coordinates.y}";
+        tileText.text = $"{coordinates.x}, {coordinates.y}";
+    }
+
+    private void SetTileColour()
+    {
+        if (tile.IsPlaceable && !tile.HasBuilding)
+        {
+            tileText.color = defaultColor;
+        } else
+        {
+            tileText.color = placedColor;
+        }
+    }
+
+    private void ToggleCoordinates()
+    {
+        tileText.enabled = !tileText.enabled;
     }
 
     private void SetGameObjectNameToCoordinate()

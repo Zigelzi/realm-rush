@@ -5,16 +5,21 @@ using UnityEngine;
 public class TowerBuilder : MonoBehaviour
 {
     [SerializeField] GameObject buildObjectPrefab;
-    [SerializeField] bool isPlaceable;
 
-    private bool hasBuilding = false;
+    
     private GameObject tower;
+    private Tile tile;
+
+    void Start()
+    {
+        tile = GetComponent<Tile>();    
+    }
 
     void Update()
     {
+
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("Right click");
             DestroyTower();
         }
     }
@@ -26,19 +31,32 @@ public class TowerBuilder : MonoBehaviour
 
     private void BuildTower()
     {
-        if (buildObjectPrefab != null && !hasBuilding)
+        if (IsBuildable())
         {
             tower = Instantiate(buildObjectPrefab, transform.position, transform.rotation, transform);
-            hasBuilding = true;
+            tile.HasBuilding = true;
+        }
+    }
+
+    private bool IsBuildable()
+    {
+        if (tile.IsPlaceable && 
+            buildObjectPrefab != null &&
+            !tile.HasBuilding)
+        {
+            return true;
+        } else
+        {
+            return false;
         }
     }
 
     private void DestroyTower()
     {
-        if (tower != null && hasBuilding)
+        if (tower != null && tile.HasBuilding)
         {
             Destroy(tower);
-            hasBuilding = false;
+            tile.HasBuilding = false;
         }
     }
 }

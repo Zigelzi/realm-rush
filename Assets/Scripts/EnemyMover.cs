@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMover : MonoBehaviour
 {
-    [SerializeField] List<Waypoint> path = new List<Waypoint>();
+    [SerializeField] List<Tile> path = new List<Tile>();
 
     [SerializeField][Range(0f, 5f)] float movementSpeed = 1f; // Seconds
 
@@ -20,7 +20,7 @@ public class EnemyMover : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        foreach(Waypoint waypoint in path)
+        foreach(Tile waypoint in path)
         {
             Vector3 startingPosition = transform.position;
             Vector3 destinationPosition = waypoint.transform.position;
@@ -37,7 +37,7 @@ public class EnemyMover : MonoBehaviour
         }
     }
 
-    void MoveTo(Waypoint destination)
+    void MoveTo(Tile destination)
     {
         Vector3 startingPosition = transform.position;
         Vector3 destinationPosition = destination.transform.position;

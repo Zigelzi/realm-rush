@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TargetLocator : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    [SerializeField] GameObject target;
 
     private Transform weapon;
     // Start is called before the first frame update
@@ -21,26 +21,40 @@ public class TargetLocator : MonoBehaviour
 
     private void AimWeapon()
     {
-        GameObject closestEnemy = GetTarget();
-        weapon.LookAt(closestEnemy.transform);
+        if (target == null)
+        {
+            target = GetTarget();
+            
+        } else
+        {
+            weapon.LookAt(target.transform);
+        }
+        
     }
 
     private GameObject GetTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject closestEnemy = enemies[0];
-        
-        Vector3 towerPosition = transform.position;
-        float closestEnemyDistance = Vector3.Distance(towerPosition, closestEnemy.transform.position);
-
-        foreach (GameObject enemy in enemies)
+        if (enemies.Length > 0)
         {
-            float distanceFromTower = Vector3.Distance(towerPosition, enemy.transform.position);
-            if (distanceFromTower < closestEnemyDistance)
+            GameObject closestEnemy = enemies[0];
+
+            Vector3 towerPosition = transform.position;
+            float closestEnemyDistance = Vector3.Distance(towerPosition, closestEnemy.transform.position);
+
+            foreach (GameObject enemy in enemies)
             {
-                closestEnemy = enemy;
+                float distanceFromTower = Vector3.Distance(towerPosition, enemy.transform.position);
+                if (distanceFromTower < closestEnemyDistance)
+                {
+                    closestEnemy = enemy;
+                }
             }
+            return closestEnemy;
+        } else
+        {
+            return null;
         }
-        return closestEnemy;
+        
     }
 }
