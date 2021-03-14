@@ -11,11 +11,23 @@ public class EnemyMover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        FindPath();
         if (path.Count > 0)
         {
             StartCoroutine(FollowPath());
         }
         
+    }
+
+    private void FindPath()
+    {
+        GameObject pathParent = GameObject.FindGameObjectWithTag("Path");
+
+        foreach (Transform child in pathParent.transform)
+        {
+            Tile singleTile = child.GetComponent<Tile>();
+            path.Add(singleTile);
+        }
     }
 
     IEnumerator FollowPath()
@@ -35,20 +47,5 @@ public class EnemyMover : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
-    }
-
-    void MoveTo(Tile destination)
-    {
-        Vector3 startingPosition = transform.position;
-        Vector3 destinationPosition = destination.transform.position;
-        float travelPercent = 0f;
-
-        while(travelPercent < 1f)
-        {
-            travelPercent += Time.deltaTime;
-            transform.position = Vector3.Lerp(startingPosition, destinationPosition, travelPercent);
-        }
-
-        
     }
 }

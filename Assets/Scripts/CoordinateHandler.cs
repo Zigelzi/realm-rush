@@ -9,15 +9,18 @@ public class CoordinateHandler : MonoBehaviour
     [SerializeField] Color defaultColor = Color.white;
     [SerializeField] Color placedColor = Color.gray;
 
-    private TextMeshPro tileText;
+    private TextMeshPro tileLabel;
     private Vector2Int coordinates = new Vector2Int();
 
     private Tile tile;
     // Start is called before the first frame update
     void Awake()
     {
-        tileText = GetComponent<TextMeshPro>();
+        
+        tileLabel = GetComponent<TextMeshPro>();
         tile = GetComponentInParent<Tile>();
+
+        tileLabel.enabled = false;
         SetTileText();
         
     }
@@ -30,7 +33,7 @@ public class CoordinateHandler : MonoBehaviour
             SetGameObjectNameToCoordinate();
         }
 
-       if (Debug.isDebugBuild  && Input.GetKeyUp(KeyCode.Z))
+       if (Debug.isDebugBuild  && Input.GetKeyUp(KeyCode.C))
         {
             ToggleCoordinates();
         }
@@ -43,23 +46,23 @@ public class CoordinateHandler : MonoBehaviour
         float grizSize = UnityEditor.EditorSnapSettings.move.x;
         coordinates.x = Mathf.RoundToInt(transform.parent.position.x / grizSize);
         coordinates.y = Mathf.RoundToInt(transform.parent.position.z / grizSize); 
-        tileText.text = $"{coordinates.x}, {coordinates.y}";
+        tileLabel.text = $"{coordinates.x}, {coordinates.y}";
     }
 
     private void SetTileColour()
     {
         if (tile.IsPlaceable && !tile.HasBuilding)
         {
-            tileText.color = defaultColor;
+            tileLabel.color = defaultColor;
         } else
         {
-            tileText.color = placedColor;
+            tileLabel.color = placedColor;
         }
     }
 
     private void ToggleCoordinates()
     {
-        tileText.enabled = !tileText.enabled;
+        tileLabel.enabled = !tileLabel.IsActive();
     }
 
     private void SetGameObjectNameToCoordinate()
