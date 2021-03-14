@@ -21,6 +21,8 @@ public class EnemyMover : MonoBehaviour
 
     private void FindPath()
     {
+        // Clear the path to be safe that it's empty list.
+        path.Clear();
         GameObject pathParent = GameObject.FindGameObjectWithTag("Path");
 
         foreach (Transform child in pathParent.transform)
@@ -47,5 +49,8 @@ public class EnemyMover : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
+
+        // When last waypoint in the path is reached, destroy the gameobject
+        Destroy(gameObject);
     }
 }
