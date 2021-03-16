@@ -9,14 +9,20 @@ public class EnemyMover : MonoBehaviour
     [SerializeField][Range(0f, 5f)] float movementSpeed = 1f; // Seconds
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         FindPath();
+        ReturnToStart();
         if (path.Count > 0)
         {
             StartCoroutine(FollowPath());
         }
         
+    }
+
+    void OnDisable()
+    {
+        ReturnToStart();
     }
 
     private void FindPath()
@@ -30,6 +36,11 @@ public class EnemyMover : MonoBehaviour
             Tile singleTile = child.GetComponent<Tile>();
             path.Add(singleTile);
         }
+    }
+
+    private void ReturnToStart()
+    {
+        transform.position = path[0].transform.position;
     }
 
     IEnumerator FollowPath()
@@ -51,6 +62,6 @@ public class EnemyMover : MonoBehaviour
         }
 
         // When last waypoint in the path is reached, destroy the gameobject
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

@@ -24,12 +24,24 @@ public class TargetLocator : MonoBehaviour
         if (target == null)
         {
             target = GetTarget();
-            
         } else
         {
             weapon.LookAt(target.transform);
         }
+
+        if (target != null)
+        {
+            if (target.activeSelf == false)
+            {
+                target = GetTarget();
+            }
+            else
+            {
+                weapon.LookAt(target.transform);
+            }
+        }
         
+
     }
 
     private GameObject GetTarget()
