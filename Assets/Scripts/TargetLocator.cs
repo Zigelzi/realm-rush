@@ -5,6 +5,8 @@ using UnityEngine;
 public class TargetLocator : MonoBehaviour
 {
     [SerializeField] GameObject target;
+    [SerializeField] ParticleSystem projectileParticle;
+    [SerializeField] [Range(0, 60f)] float towerRange = 15f; // One tile is 10f
 
     private Transform weapon;
     // Start is called before the first frame update
@@ -24,42 +26,42 @@ public class TargetLocator : MonoBehaviour
         if (target == null)
         {
             target = GetTarget();
+        } else if (target.activeSelf == false)
+        {
+            target = GetTarget();
+            
         } else
         {
+            float closestEnemyDistance = Vector3.Distance(transform.position, target.transform.position);
             weapon.LookAt(target.transform);
-        }
-
-        if (target != null)
-        {
-            if (target.activeSelf == false)
+            if (closestEnemyDistance < towerRange)
             {
-                target = GetTarget();
-            }
-            else
+                
+                Attack(true);
+            } else
             {
-                weapon.LookAt(target.transform);
+                Attack(false);
             }
         }
-        
-
     }
 
     private GameObject GetTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        
         if (enemies.Length > 0)
         {
-            GameObject closestEnemy = enemies[0];
-
+            GameObject closestEnemy = enemies[0].gameObject;
             Vector3 towerPosition = transform.position;
             float closestEnemyDistance = Vector3.Distance(towerPosition, closestEnemy.transform.position);
 
-            foreach (GameObject enemy in enemies)
+            foreach (Enemy enemy in enemies)
             {
                 float distanceFromTower = Vector3.Distance(towerPosition, enemy.transform.position);
+                
                 if (distanceFromTower < closestEnemyDistance)
                 {
-                    closestEnemy = enemy;
+                    closestEnemy = enemy.gameObject;
                 }
             }
             return closestEnemy;
@@ -67,6 +69,11 @@ public class TargetLocator : MonoBehaviour
         {
             return null;
         }
-        
+    }
+
+    void Attack(bool isActive)
+    {
+        ParticleSystem.EmissionModule emissionModule = projectileParticle.emission;
+        emissionModule.enabled = isActive;
     }
 }

@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 5729897809659162609}
   - component: {fileID: 249003892694513173}
   - component: {fileID: 8507006070424360739}
+  - component: {fileID: 1030851914490218290}
   m_Layer: 0
   m_Name: Ram
   m_TagString: Enemy
@@ -154,4 +155,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d52f27991a9d0409575cd478ba3f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  maxHealth: 100
+--- !u!114 &1030851914490218290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040643765344069697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72349056a59894a4a9b9d4b62ba0c3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
