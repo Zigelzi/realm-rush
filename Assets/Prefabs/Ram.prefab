@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5729897809659162609}
   - component: {fileID: 249003892694513173}
   - component: {fileID: 8507006070424360739}
-  - component: {fileID: 1030851914490218290}
+  - component: {fileID: 3298506279375302315}
   m_Layer: 0
   m_Name: Ram
   m_TagString: Enemy
@@ -156,7 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
---- !u!114 &1030851914490218290
+  reward: 10
+--- !u!114 &3298506279375302315
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,6 +166,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5040643765344069697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72349056a59894a4a9b9d4b62ba0c3d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f4795ecec7377b40a164b0fb1ef7d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

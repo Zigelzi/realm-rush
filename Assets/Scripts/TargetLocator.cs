@@ -9,16 +9,22 @@ public class TargetLocator : MonoBehaviour
     [SerializeField] [Range(0, 60f)] float towerRange = 15f; // One tile is 10f
 
     private Transform weapon;
+    private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         weapon = transform.Find("BallistaTopMesh").transform;
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        AimWeapon();
+        if (gameManager.GameState != GameManager.State.Defeated)
+        {
+            AimWeapon();
+        }
+        
     }
 
     private void AimWeapon()

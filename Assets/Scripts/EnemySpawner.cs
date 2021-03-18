@@ -12,10 +12,12 @@ public class EnemySpawner : MonoBehaviour
     private GameObject pathParent;
     private GameObject[] objectPool;
     private Transform spawnPosition;
+    private GameManager gameManager;
 
     void Awake()
     {
         GameObject pathParent = GameObject.FindGameObjectWithTag("Path");
+        gameManager = FindObjectOfType<GameManager>();
         spawnPosition = pathParent.transform.GetChild(0).transform;
         PopulatePool();
     }
@@ -23,8 +25,6 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        Debug.Log("Starting coroutine");
         StartCoroutine(SpawnEnemies());
     }
 
@@ -40,9 +40,8 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        while(spawningEnabled)
+        while(spawningEnabled && gameManager.GameState != GameManager.State.Defeated)
         {
-            Debug.Log("Coroutine running");
             for (int i = 0; i < objectPool.Length; i++)
             {
                 SpawnEnemy(i);
