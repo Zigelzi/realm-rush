@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerBuilder : MonoBehaviour
+public class Tower : MonoBehaviour
 {
     [SerializeField] GameObject buildObjectPrefab;
 
@@ -20,16 +20,16 @@ public class TowerBuilder : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            DestroyTower();
+            Demolish();
         }
     }
 
     private void OnMouseDown()
     {
-        BuildTower();
+        Build();
     }
 
-    private void BuildTower()
+    private void Build()
     {
         if (IsBuildable())
         {
@@ -51,7 +51,7 @@ public class TowerBuilder : MonoBehaviour
         }
     }
 
-    private void DestroyTower()
+    private void Demolish()
     {
         if (tower != null && tile.HasBuilding)
         {

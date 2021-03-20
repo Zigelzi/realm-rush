@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 [ExecuteAlways]
-public class CoordinateHandler : MonoBehaviour
+public class Waypoint : MonoBehaviour
 {
     [SerializeField] Color defaultColor = Color.white;
     [SerializeField] Color placedColor = Color.gray;
@@ -30,12 +30,12 @@ public class CoordinateHandler : MonoBehaviour
        if (!Application.isPlaying)
         {
             SetTileText();
-            SetGameObjectNameToCoordinate();
+            SetGameObjectName();
         }
 
        if (Debug.isDebugBuild  && Input.GetKeyUp(KeyCode.C))
         {
-            ToggleCoordinates();
+            ToggleVisibility();
         }
 
         SetTileColour();
@@ -60,12 +60,12 @@ public class CoordinateHandler : MonoBehaviour
         }
     }
 
-    private void ToggleCoordinates()
+    private void ToggleVisibility()
     {
         tileLabel.enabled = !tileLabel.IsActive();
     }
 
-    private void SetGameObjectNameToCoordinate()
+    private void SetGameObjectName()
     {
         gameObject.transform.parent.name = $"Tile_{coordinates.x}_{coordinates.y}";
     }

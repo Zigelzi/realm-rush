@@ -7,11 +7,16 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int maxHealth = 100;
     private int currentHealth;
     private Enemy enemy;
+
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
         enemy = GetComponent<Enemy>();
+    }
+
+    void OnEnable()
+    {
+        currentHealth = maxHealth;
     }
 
     private void OnParticleCollision(GameObject other)
