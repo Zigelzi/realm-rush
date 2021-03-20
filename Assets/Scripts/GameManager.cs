@@ -1,17 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI scoreDisplay;
+    int restartDelay = 2;
+    State gameState;
+    Bank bank;
+
     public enum State { Alive, Transcending, Defeated }
-    private State gameState;
-    private Bank bank;
     public State GameState { get { return gameState; }}
     // Start is called before the first frame update
     void Start()
     {
         bank = FindObjectOfType<Bank>();
+        if (bank != null)
+        {
+            UpdateScoreDisplay();
+        }
     }
 
     // Update is called once per frame
@@ -20,6 +29,7 @@ public class GameManager : MonoBehaviour
         if (bank != null)
         {
             CheckBankBalance();
+            UpdateScoreDisplay();
         }
     }
 
@@ -27,13 +37,25 @@ public class GameManager : MonoBehaviour
     {
         if (bank.CurrentBalance <= 0)
         {
-            End();
+            LoseGame();
         }
     }
 
-    private void End()
+    private void LoseGame()
     {
         gameState = State.Defeated;
+        Invoke("RestartGame", restartDelay);
+    }
 
+    private void RestartGame()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);
+
+    }
+
+    private void UpdateScoreDisplay()
+    {
+        scoreDisplay.text = $"Gold: {bank.CurrentBalance}";
     }
 }

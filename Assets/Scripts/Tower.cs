@@ -45,6 +45,13 @@ public class Tower : MonoBehaviour
     {
         bool buildingSuccesful;
         Bank bank = FindObjectOfType<Bank>();
+        if (bank == null)
+        {
+            Debug.Log("Bank not found");
+            buildingSuccesful = false;
+            return buildingSuccesful;
+        }
+
         if (IsBuildable(tile) && bank.CanAffort(buildCost))
         {
             Instantiate(tower, tile.transform.position, tile.transform.rotation, tile.transform);
@@ -52,10 +59,8 @@ public class Tower : MonoBehaviour
             buildingSuccesful = true;
             return buildingSuccesful;
         }
-        else
-        {
-            buildingSuccesful = false;
-            return buildingSuccesful;
-        }
+
+        buildingSuccesful = false;
+        return buildingSuccesful;
     }
 }

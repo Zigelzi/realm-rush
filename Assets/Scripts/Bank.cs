@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bank : MonoBehaviour
 {
     [SerializeField] int startingBalance = 150;
-
     [SerializeField] int currentBalance;
     public int CurrentBalance { get { return currentBalance; } }
 

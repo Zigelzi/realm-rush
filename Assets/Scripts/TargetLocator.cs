@@ -23,6 +23,9 @@ public class TargetLocator : MonoBehaviour
         if (gameManager.GameState != GameManager.State.Defeated)
         {
             AimWeapon();
+        } else
+        {
+            Attack(false);
         }
         
     }
