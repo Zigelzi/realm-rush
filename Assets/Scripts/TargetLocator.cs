@@ -38,7 +38,6 @@ public class TargetLocator : MonoBehaviour
         } else if (target.activeSelf == false)
         {
             target = GetTarget();
-            
         } else
         {
             float closestEnemyDistance = Vector3.Distance(transform.position, target.transform.position);
@@ -49,6 +48,7 @@ public class TargetLocator : MonoBehaviour
             } else
             {
                 Attack(false);
+                target = GetTarget();
             }
         }
     }
