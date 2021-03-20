@@ -24,7 +24,10 @@ public class EnemyMovement : MonoBehaviour
 
     void OnDisable()
     {
-        ReturnToStart();
+        if (path != null)
+        {
+            ReturnToStart();
+        }
     }
 
     private void FindPath()
@@ -42,7 +45,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void ReturnToStart()
     {
-        transform.position = path[0].transform.position;
+            transform.position = path[0].transform.position;        
     }
 
     IEnumerator FollowPath()

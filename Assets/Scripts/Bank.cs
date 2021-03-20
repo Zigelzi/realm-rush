@@ -23,4 +23,15 @@ public class Bank : MonoBehaviour
     {
         currentBalance -= Mathf.Abs(amount);
     }
+
+    public bool CanAffort(int buildCost)
+    {
+        int balanceAfterBuilding = currentBalance - buildCost;
+        if (balanceAfterBuilding >= 0) {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
 }

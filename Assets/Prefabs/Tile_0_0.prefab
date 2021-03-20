@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 561003785455381129}
   - component: {fileID: 580075187436210005}
   - component: {fileID: 7605117525578490887}
-  - component: {fileID: 6111416469981922897}
   m_Layer: 0
   m_Name: Tile_0_0
   m_TagString: Untagged
@@ -61,20 +60,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaceable: 1
---- !u!114 &6111416469981922897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561003785455381128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03cecd48c1e2a264d861d72d3bc172f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildObjectPrefab: {fileID: 3219458064393657486, guid: 8a965e088bae16643aab3d07ccfd5e2e, type: 3}
-  isPlaceable: 1
+  hasTower: 0
+  towerOnTile: {fileID: 0}
+  towerPrefab: {fileID: 3961717816562881967, guid: 8a965e088bae16643aab3d07ccfd5e2e, type: 3}
 --- !u!1 &621115437231418978
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9bb19d339ad0b4a8538185df841546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  placedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &6250575978959233443
 GameObject:
   m_ObjectHideFlags: 0

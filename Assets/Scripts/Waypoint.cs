@@ -51,7 +51,7 @@ public class Waypoint : MonoBehaviour
 
     private void SetTileColour()
     {
-        if (tile.IsPlaceable && !tile.HasBuilding)
+        if (tile.IsPlaceable && !tile.HasTower)
         {
             tileLabel.color = defaultColor;
         } else

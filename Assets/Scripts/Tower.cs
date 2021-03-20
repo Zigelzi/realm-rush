@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] GameObject buildObjectPrefab;
-
+    [SerializeField] [Range(0, 50)] int buildCost = 25;
     
-    private GameObject tower;
-    private Tile tile;
 
     void Start()
     {
-        tile = GetComponent<Tile>();    
+           
     }
 
     void Update()
@@ -24,25 +21,11 @@ public class Tower : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
-    {
-        Build();
-    }
-
-    private void Build()
-    {
-        if (IsBuildable())
-        {
-            tower = Instantiate(buildObjectPrefab, transform.position, transform.rotation, transform);
-            tile.HasBuilding = true;
-        }
-    }
-
-    private bool IsBuildable()
+    // Private methods
+    private bool IsBuildable(Tile tile)
     {
         if (tile.IsPlaceable && 
-            buildObjectPrefab != null &&
-            !tile.HasBuilding)
+            !tile.HasTower)
         {
             return true;
         } else
@@ -53,10 +36,26 @@ public class Tower : MonoBehaviour
 
     private void Demolish()
     {
-        if (tower != null && tile.HasBuilding)
+        Destroy(gameObject);
+    }
+
+    // Public methods
+
+    public bool Build(Tower tower, Tile tile)
+    {
+        bool buildingSuccesful;
+        Bank bank = FindObjectOfType<Bank>();
+        if (IsBuildable(tile) && bank.CanAffort(buildCost))
         {
-            Destroy(tower);
-            tile.HasBuilding = false;
+            Instantiate(tower, tile.transform.position, tile.transform.rotation, tile.transform);
+            bank.Withdraw(buildCost);
+            buildingSuccesful = true;
+            return buildingSuccesful;
+        }
+        else
+        {
+            buildingSuccesful = false;
+            return buildingSuccesful;
         }
     }
 }

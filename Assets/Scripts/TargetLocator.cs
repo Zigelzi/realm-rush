@@ -42,7 +42,6 @@ public class TargetLocator : MonoBehaviour
             weapon.LookAt(target.transform);
             if (closestEnemyDistance < towerRange)
             {
-                
                 Attack(true);
             } else
             {

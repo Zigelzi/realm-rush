@@ -5,17 +5,38 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     [SerializeField] bool isPlaceable;
-    [SerializeField] private bool hasBuilding = false;
+    [SerializeField] bool hasTower = false;
+    [SerializeField] Tower towerOnTile; // Tower on the tile
+    [SerializeField] Tower towerPrefab;
+
+
     public bool IsPlaceable { get { return isPlaceable; } }
-    public bool HasBuilding { get { return hasBuilding; } set { hasBuilding = value; } }
+    public bool HasTower { get { return hasTower; } set { hasTower = value; } }
     private void OnMouseDown()
     {
-        if (isPlaceable)
+
+        if (isPlaceable && !HasBuilding())
         {
-            Debug.Log("Placing tower allowed");
+            bool towerBuilt = towerPrefab.Build(towerPrefab, this);
+            if (towerBuilt)
+            {
+                hasTower = true;
+            }
         } else
         {
             Debug.Log("Not allowed to place tower here!");
+        }
+    }
+
+    private bool HasBuilding()
+    {
+        towerOnTile = GetComponentInChildren<Tower>();
+        if (towerOnTile != null)
+        {
+            return true;
+        } else
+        {
+            return false;
         }
     }
 }
