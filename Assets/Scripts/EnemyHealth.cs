@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int maxHealth = 100;
+    [SerializeField] int healthIncrement = 20;
     private int currentHealth;
     private Enemy enemy;
 
@@ -35,6 +37,7 @@ public class EnemyHealth : MonoBehaviour
         {
             Die();
             enemy.RewardGold();
+            maxHealth += healthIncrement;
         }
     }
 

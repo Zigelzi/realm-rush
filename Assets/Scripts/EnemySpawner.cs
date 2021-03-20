@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] int poolSize = 5;
-    [SerializeField] [Range(0, 30)] int spawnInterval = 3;
+    [SerializeField] [Range(0.5f, 30f)] float spawnInterval = 3f;
     [SerializeField] bool spawningEnabled = true;
 
     private GameObject pathParent;

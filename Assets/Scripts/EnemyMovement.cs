@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] List<Tile> path = new List<Tile>();
@@ -39,7 +41,10 @@ public class EnemyMovement : MonoBehaviour
         foreach (Transform child in pathParent.transform)
         {
             Tile singleTile = child.GetComponent<Tile>();
-            path.Add(singleTile);
+            if (singleTile != null)
+            {
+                path.Add(singleTile);
+            }
         }
     }
 

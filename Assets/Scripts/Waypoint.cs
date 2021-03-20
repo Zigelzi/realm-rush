@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 [ExecuteAlways]
+[RequireComponent(typeof(TextMeshPro))]
 public class Waypoint : MonoBehaviour
 {
     [SerializeField] Color defaultColor = Color.white;
@@ -16,7 +18,6 @@ public class Waypoint : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
         tileLabel = GetComponent<TextMeshPro>();
         tile = GetComponentInParent<Tile>();
 
@@ -38,7 +39,7 @@ public class Waypoint : MonoBehaviour
             ToggleVisibility();
         }
 
-        SetTileColour();
+        SetTileLabelColour();
     }
 
     private void SetTileText()
@@ -49,7 +50,7 @@ public class Waypoint : MonoBehaviour
         tileLabel.text = $"{coordinates.x}, {coordinates.y}";
     }
 
-    private void SetTileColour()
+    private void SetTileLabelColour()
     {
         if (tile.IsPlaceable && !tile.HasTower)
         {
