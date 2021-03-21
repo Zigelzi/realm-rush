@@ -21,7 +21,7 @@ public class Waypoint : MonoBehaviour
         tileLabel = GetComponent<TextMeshPro>();
         tile = GetComponentInParent<Tile>();
 
-        tileLabel.enabled = false;
+        tileLabel.enabled = true;
         SetTileText();
         
     }
