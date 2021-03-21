@@ -36,6 +36,7 @@ public class Pathfinder : MonoBehaviour
         {
             startNode = grid[startCoordinates];
             startNode.isStart = true;
+
             destinationNode = grid[destinationCoordinates];
             destinationNode.isDestination = true;
         }
