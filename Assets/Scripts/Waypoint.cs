@@ -9,8 +9,11 @@ using TMPro;
 public class Waypoint : MonoBehaviour
 {
     [SerializeField] Color defaultColor = Color.white;
-    [SerializeField] Color placedColor = Color.gray;
+    [SerializeField] Color blockedColor = Color.gray;
+    [SerializeField] Color exploredColor = Color.yellow;
+    [SerializeField] Color pathColor = new Color(1f, 0.47f, 0.14f);
 
+    GridManager gridManager;
     TextMeshPro tileLabel;
     Tile tile;
     Vector2Int coordinates = new Vector2Int();
@@ -19,6 +22,7 @@ public class Waypoint : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        gridManager = FindObjectOfType<GridManager>();
         tileLabel = GetComponent<TextMeshPro>();
         tile = GetComponentInParent<Tile>();
 
@@ -53,13 +57,28 @@ public class Waypoint : MonoBehaviour
 
     void SetTileLabelColour()
     {
-        if (tile.IsPlaceable && !tile.HasTower)
+        if (gridManager == null) { return; }
+
+        Node node = gridManager.GetNode(coordinates);
+
+        if (node == null) { return; }
+
+        if (!node.isWalkable)
         {
-            tileLabel.color = defaultColor;
+            tileLabel.color = blockedColor;
+        } else if (node.isPath)
+        {
+            tileLabel.color = pathColor;
+        } else if (node.isExplored)
+        {
+            tileLabel.color = exploredColor;
         } else
         {
-            tileLabel.color = placedColor;
+            tileLabel.color = defaultColor;
         }
+
+        
+        
     }
 
     void ToggleVisibility()

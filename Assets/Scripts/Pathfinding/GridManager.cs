@@ -7,6 +7,8 @@ public class GridManager : MonoBehaviour
     [SerializeField] Vector2Int gridSize;
     Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
 
+    public Dictionary<Vector2Int, Node> Grid { get { return grid; } }
+
     void Awake()
     {
         CreateGrid();
@@ -28,7 +30,7 @@ public class GridManager : MonoBehaviour
         Vector2Int coordinates = new Vector2Int(x, y);
         Node node = new Node(coordinates, true);
         grid.Add(coordinates, node);
-        Debug.Log($"Node coordinates: {grid[coordinates].coordinates} and it's walkable: {grid[coordinates].isWalkable}");
+        //Debug.Log($"Node coordinates: {grid[coordinates].coordinates} and it's walkable: {grid[coordinates].isWalkable}");
     }
 
     public Node GetNode(Vector2Int coordinates)
