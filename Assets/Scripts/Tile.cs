@@ -12,7 +12,7 @@ public class Tile : MonoBehaviour
 
     public bool IsPlaceable { get { return isPlaceable; } }
     public bool HasTower { get { return hasTower; } set { hasTower = value; } }
-    private void OnMouseDown()
+    void OnMouseDown()
     {
 
         if (isPlaceable && !HasBuilding())
@@ -28,7 +28,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    private bool HasBuilding()
+    bool HasBuilding()
     {
         towerOnTile = GetComponentInChildren<Tower>();
         if (towerOnTile != null)

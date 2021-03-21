@@ -8,8 +8,9 @@ public class TargetLocator : MonoBehaviour
     [SerializeField] ParticleSystem projectileParticle;
     [SerializeField] [Range(0, 60f)] float towerRange = 15f; // One tile is 10f
 
-    private Transform weapon;
-    private GameManager gameManager;
+    Transform weapon;
+    GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,7 @@ public class TargetLocator : MonoBehaviour
         
     }
 
-    private void AimWeapon()
+    void AimWeapon()
     {
         if (target == null)
         {
@@ -53,7 +54,7 @@ public class TargetLocator : MonoBehaviour
         }
     }
 
-    private GameObject GetTarget()
+    GameObject GetTarget()
     {
         Enemy[] enemies = FindObjectsOfType<Enemy>();
         

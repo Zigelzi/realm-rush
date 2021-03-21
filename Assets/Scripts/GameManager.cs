@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void CheckBankBalance()
+    void CheckBankBalance()
     {
         if (bank.CurrentBalance <= 0)
         {
@@ -41,20 +41,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void LoseGame()
+    void LoseGame()
     {
         gameState = State.Defeated;
         Invoke("RestartGame", restartDelay);
     }
 
-    private void RestartGame()
+    void RestartGame()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
 
     }
 
-    private void UpdateScoreDisplay()
+    void UpdateScoreDisplay()
     {
         scoreDisplay.text = $"Gold: {bank.CurrentBalance}";
     }

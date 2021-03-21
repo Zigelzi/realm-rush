@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] List<Tile> path = new List<Tile>();
     [SerializeField][Range(0f, 5f)] float movementSpeed = 1f; // Seconds
 
-    private Enemy enemy;
+    Enemy enemy;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -32,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void FindPath()
+    void FindPath()
     {
         // Clear the path to be safe that it's empty list.
         path.Clear();
@@ -48,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void ReturnToStart()
+    void ReturnToStart()
     {
             transform.position = path[0].transform.position;        
     }

@@ -30,4 +30,14 @@ public class GridManager : MonoBehaviour
         grid.Add(coordinates, node);
         Debug.Log($"Node coordinates: {grid[coordinates].coordinates} and it's walkable: {grid[coordinates].isWalkable}");
     }
+
+    public Node GetNode(Vector2Int coordinates)
+    {
+        if (grid.ContainsKey(coordinates))
+        {
+            return grid[coordinates];
+        }
+
+        return null;
+    }
 }

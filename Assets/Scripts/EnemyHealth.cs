@@ -7,8 +7,8 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int maxHealth = 100;
     [SerializeField] int healthIncrement = 20;
-    private int currentHealth;
-    private Enemy enemy;
+    int currentHealth;
+    Enemy enemy;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    private void OnParticleCollision(GameObject other)
+    void OnParticleCollision(GameObject other)
     {
         if (other.gameObject.tag == "Projectile")
         {
@@ -29,7 +29,7 @@ public class EnemyHealth : MonoBehaviour
         }     
     }
 
-    private void ProcessHit(int damage)
+    void ProcessHit(int damage)
     {
         currentHealth -= damage;
 
@@ -41,7 +41,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private void Die()
+    void Die()
     {
         gameObject.SetActive(false);
     }

@@ -22,7 +22,7 @@ public class Tower : MonoBehaviour
     }
 
     // Private methods
-    private bool IsBuildable(Tile tile)
+    bool IsBuildable(Tile tile)
     {
         if (tile.IsPlaceable && 
             !tile.HasTower)
@@ -34,7 +34,7 @@ public class Tower : MonoBehaviour
         }
     }
 
-    private void Demolish()
+    void Demolish()
     {
         Destroy(gameObject);
     }

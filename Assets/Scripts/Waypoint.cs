@@ -11,10 +11,11 @@ public class Waypoint : MonoBehaviour
     [SerializeField] Color defaultColor = Color.white;
     [SerializeField] Color placedColor = Color.gray;
 
-    private TextMeshPro tileLabel;
-    private Vector2Int coordinates = new Vector2Int();
+    TextMeshPro tileLabel;
+    Tile tile;
+    Vector2Int coordinates = new Vector2Int();
 
-    private Tile tile;
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -42,7 +43,7 @@ public class Waypoint : MonoBehaviour
         SetTileLabelColour();
     }
 
-    private void SetTileText()
+    void SetTileText()
     {
         float grizSize = UnityEditor.EditorSnapSettings.move.x;
         coordinates.x = Mathf.RoundToInt(transform.parent.position.x / grizSize);
@@ -50,7 +51,7 @@ public class Waypoint : MonoBehaviour
         tileLabel.text = $"{coordinates.x}, {coordinates.y}";
     }
 
-    private void SetTileLabelColour()
+    void SetTileLabelColour()
     {
         if (tile.IsPlaceable && !tile.HasTower)
         {
@@ -61,12 +62,12 @@ public class Waypoint : MonoBehaviour
         }
     }
 
-    private void ToggleVisibility()
+    void ToggleVisibility()
     {
         tileLabel.enabled = !tileLabel.IsActive();
     }
 
-    private void SetGameObjectName()
+    void SetGameObjectName()
     {
         gameObject.transform.parent.name = $"Tile_{coordinates.x}_{coordinates.y}";
     }
