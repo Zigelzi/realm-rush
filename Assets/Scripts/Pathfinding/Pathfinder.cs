@@ -81,7 +81,11 @@ public class Pathfinder : MonoBehaviour
             if (grid.ContainsKey(searchCoordinates))
             {
                 Node foundNode = grid[searchCoordinates];
-                neighbors.Add(foundNode);
+                if (foundNode.isWalkable)
+                {
+                    neighbors.Add(foundNode);
+                }
+                
             }
 
             foreach (Node neighbor in neighbors)
