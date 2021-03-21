@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 561003785455381129}
   - component: {fileID: 580075187436210005}
   - component: {fileID: 7605117525578490887}
+  - component: {fileID: -810045102339142364}
   m_Layer: 0
   m_Name: Tile_0_0
   m_TagString: Untagged
@@ -69,6 +70,18 @@ MonoBehaviour:
   pathColor: {r: 1, g: 0.47, b: 0.14, a: 1}
   startColor: {r: 0, g: 1, b: 0, a: 1}
   destinationColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &-810045102339142364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561003785455381128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4bc099baa85dc4aa878b16c51d13ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &621115437231418978
 GameObject:
   m_ObjectHideFlags: 0
