@@ -27,38 +27,21 @@ public class Pathfinder : MonoBehaviour
         {
             grid = gridManager.Grid;
         }
-        startNode = new Node(startCoordinates, true);
-        destinationNode = new Node(destinationCoordinates, true);
+        
     }
 
     private void Start()
     {
-        BreadthFirstSearch();
-    }
-
-    void ExploreNeighbors()
-    {
-        List<Node> neighbors = new List<Node>();
-
-        foreach (Vector2Int direction in directions)
+        if (gridManager != null)
         {
-            Vector2Int searchCoordinates = currentSearchNode.coordinates + direction;
-            if (grid.ContainsKey(searchCoordinates))
-            {
-                Node foundNode = grid[searchCoordinates];
-                neighbors.Add(foundNode);
-            }
-
-            foreach (Node neighbor in neighbors)
-            {
-                if (!reached.ContainsKey(neighbor.coordinates) && neighbor.isWalkable)
-                {
-                    // Mark the node as being reached and then add it to the queue to be explored
-                    reached.Add(neighbor.coordinates, neighbor);
-                    frontier.Enqueue(neighbor);
-                }
-            }
+            startNode = grid[startCoordinates];
+            startNode.isStart = true;
+            destinationNode = grid[destinationCoordinates];
+            destinationNode.isDestination = true;
         }
+        
+        BreadthFirstSearch();
+        BuildPath();
     }
 
     void BreadthFirstSearch()
@@ -80,11 +63,60 @@ public class Pathfinder : MonoBehaviour
             ExploreNeighbors();
 
             // If we find the destination, we don't need to search anymore
-            if (currentSearchNode.coordinates == destinationCoordinates)
+            if (currentSearchNode.coordinates == destinationNode.coordinates)
             {
                 isSearching = false;
             }
         }
     }
+
+    void ExploreNeighbors()
+    {
+        List<Node> neighbors = new List<Node>();
+
+        foreach (Vector2Int direction in directions)
+        {
+            Vector2Int searchCoordinates = currentSearchNode.coordinates + direction;
+            if (grid.ContainsKey(searchCoordinates))
+            {
+                Node foundNode = grid[searchCoordinates];
+                neighbors.Add(foundNode);
+            }
+
+            foreach (Node neighbor in neighbors)
+            {
+                if (!reached.ContainsKey(neighbor.coordinates) && neighbor.isWalkable)
+                {
+                    neighbor.connectedTo = currentSearchNode;
+                    // Mark the node as being reached and then add it to the queue to be explored
+                    reached.Add(neighbor.coordinates, neighbor);
+                    frontier.Enqueue(neighbor);
+                }
+            }
+        }
+    }
+
+    List<Node> BuildPath()
+    {
+        // Build path backwards from destination node via nodes connected to it
+        List<Node> path = new List<Node>();
+        Node currentNode = destinationNode;
+
+        path.Add(currentNode);
+        currentNode.isPath = true;
+
+        while (currentNode.connectedTo != null)
+        {
+            currentNode = currentNode.connectedTo;
+            path.Add(currentNode);
+            currentNode.isPath = true;
+        }
+        
+        path.Reverse();
+        return path;
+
+    }
+
+    
 
 }

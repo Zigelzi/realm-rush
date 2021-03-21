@@ -12,6 +12,8 @@ public class Waypoint : MonoBehaviour
     [SerializeField] Color blockedColor = Color.gray;
     [SerializeField] Color exploredColor = Color.yellow;
     [SerializeField] Color pathColor = new Color(1f, 0.47f, 0.14f);
+    [SerializeField] Color startColor = Color.green;
+    [SerializeField] Color destinationColor = Color.red;
 
     GridManager gridManager;
     TextMeshPro tileLabel;
@@ -66,13 +68,24 @@ public class Waypoint : MonoBehaviour
         if (!node.isWalkable)
         {
             tileLabel.color = blockedColor;
-        } else if (node.isPath)
+        }
+        else if (node.isStart)
+        {
+            tileLabel.color = startColor;
+        } 
+        else if (node.isDestination)
+        {
+            tileLabel.color = destinationColor;
+        } 
+        else if (node.isPath)
         {
             tileLabel.color = pathColor;
-        } else if (node.isExplored)
+        } 
+        else if (node.isExplored)
         {
             tileLabel.color = exploredColor;
-        } else
+        }
+        else
         {
             tileLabel.color = defaultColor;
         }
