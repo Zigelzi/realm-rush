@@ -61,7 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cecd48c1e2a264d861d72d3bc172f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 3219458064393657486}
+  buildCost: 25
+  buildDuration: 3
 --- !u!1 &5216710520765757260
 GameObject:
   m_ObjectHideFlags: 0

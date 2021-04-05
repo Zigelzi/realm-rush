@@ -12,7 +12,8 @@ public class Tower : MonoBehaviour
 
     void Start()
     {
-        
+        buildTower = BuildTower();
+        StartCoroutine(buildTower);
     }
 
     void Update()
@@ -51,6 +52,7 @@ public class Tower : MonoBehaviour
         GridManager gridmanager = FindObjectOfType<GridManager>(); ;
         Pathfinder pathFinder = FindObjectOfType<Pathfinder>();
         Vector2Int coordinates;
+        
 
         coordinates = gridmanager.GetCoordinatesFromPosition(tile.transform.position);
 
@@ -85,5 +87,49 @@ public class Tower : MonoBehaviour
 
         coordinates = gridmanager.GetCoordinatesFromPosition(tile.transform.position);
         gridmanager.BlockNode(coordinates);
+    }
+
+    IEnumerator BuildTower()
+    {
+        int buildSteps = transform.childCount;
+        float stepTime = buildDuration / buildSteps;
+        DeactivateChildren();
+
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+            yield return new WaitForSeconds(stepTime);
+
+            foreach (Transform grandchild in child)
+            {
+                grandchild.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    void DeactivateChildren()
+    {
+        
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+            foreach(Transform grandchild in child)
+            {
+                grandchild.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    void ActivateChildren()
+    {
+
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+            foreach (Transform grandchild in child)
+            {
+                grandchild.gameObject.SetActive(true);
+            }
+        }
     }
 }
