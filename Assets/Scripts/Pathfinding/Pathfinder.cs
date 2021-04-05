@@ -47,13 +47,18 @@ public class Pathfinder : MonoBehaviour
 
     void BreadthFirstSearch()
     {
+        // Clear the previous path
+        frontier.Clear();
+        reached.Clear();
+
         bool isSearching = true;
+
         // Add the starting node as the first item of the queue
         frontier.Enqueue(startNode);
-        // Because we've reached our starting node we add it to the reached list
+        // At the beginning we've already reached the starting node, because it's... starting node. Duh.
         reached.Add(startNode.coordinates, startNode);
 
-        // Then we start finding the surrounding nodes as long as there's new nodes to be discovered
+        // Then we start exploring the surrounding nodes as long as there's new nodes to be discovered
         while (frontier.Count > 0 && isSearching)
         {
             // Get the first node from the queue as the node which neighbors we search for
@@ -63,7 +68,7 @@ public class Pathfinder : MonoBehaviour
 
             ExploreNeighbors();
 
-            // If we find the destination, we don't need to search anymore
+            // If we find the destination, stop searching
             if (currentSearchNode.coordinates == destinationNode.coordinates)
             {
                 isSearching = false;

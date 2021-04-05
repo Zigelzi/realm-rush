@@ -35,7 +35,6 @@ public class GridManager : MonoBehaviour
         Vector2Int coordinates = new Vector2Int(x, y);
         Node node = new Node(coordinates, true);
         grid.Add(coordinates, node);
-        //Debug.Log($"Node coordinates: {grid[coordinates].coordinates} and it's walkable: {grid[coordinates].isWalkable}");
     }
 
     public Node GetNode(Vector2Int coordinates)
@@ -72,5 +71,15 @@ public class GridManager : MonoBehaviour
         position.z = coordinates.y * unityGridSize;
 
         return position;
+    }
+
+    public void ResetNodes()
+    {
+        foreach(KeyValuePair<Vector2Int, Node> node in grid)
+        {
+            node.Value.isExplored = false;
+            node.Value.connectedTo = null;
+            node.Value.isPath = false;
+        }
     }
 }

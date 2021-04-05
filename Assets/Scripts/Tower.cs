@@ -5,11 +5,10 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     [SerializeField] [Range(0, 50)] int buildCost = 25;
-    
 
     void Start()
     {
-           
+        
     }
 
     void Update()
@@ -45,6 +44,8 @@ public class Tower : MonoBehaviour
     {
         bool buildingSuccesful;
         Bank bank = FindObjectOfType<Bank>();
+             
+
         if (bank == null)
         {
             Debug.Log("Bank not found");
@@ -54,13 +55,27 @@ public class Tower : MonoBehaviour
 
         if (IsBuildable(tile) && bank.CanAffort(buildCost))
         {
+            // Build the tower
             Instantiate(tower, tile.transform.position, tile.transform.rotation, tile.transform);
             bank.Withdraw(buildCost);
+
+            BlockTile(tile);
+
             buildingSuccesful = true;
             return buildingSuccesful;
         }
 
         buildingSuccesful = false;
         return buildingSuccesful;
+    }
+
+    private void BlockTile(Tile tile)
+    {
+        GridManager gridmanager;
+        gridmanager = FindObjectOfType<GridManager>();
+        Vector2Int coordinates;
+
+        coordinates = gridmanager.GetCoordinatesFromPosition(tile.transform.position);
+        gridmanager.BlockNode(coordinates);
     }
 }
