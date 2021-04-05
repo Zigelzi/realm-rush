@@ -5,7 +5,10 @@ using UnityEngine;
 public class Pathfinder : MonoBehaviour
 {
     [SerializeField] Vector2Int startCoordinates;
+    public Vector2Int StartCoordinates { get { return startCoordinates; } }
+
     [SerializeField] Vector2Int destinationCoordinates;
+    public Vector2Int DestinationCoordinates { get { return destinationCoordinates; } }
 
     Node startNode;
     Node destinationNode;
@@ -26,44 +29,49 @@ public class Pathfinder : MonoBehaviour
         if (gridManager != null)
         {
             grid = gridManager.Grid;
+            startNode = grid[startCoordinates];
+            startNode.isStart = true;
+
+            destinationNode = grid[destinationCoordinates];
+            destinationNode.isDestination = true;
+
+            
         }
         
     }
 
     void Start()
     {
-        if (gridManager != null)
-        {
-            startNode = grid[startCoordinates];
-            startNode.isStart = true;
-
-            destinationNode = grid[destinationCoordinates];
-            destinationNode.isDestination = true;
-        }
-
-
         GetNewPath();
     }
 
     public List<Node> GetNewPath()
     {
+        return GetNewPath(startCoordinates);
+    }
+
+    public List<Node> GetNewPath(Vector2Int coordinates)
+    {
         gridManager.ResetNodes();
-        BreadthFirstSearch();
+        BreadthFirstSearch(coordinates);
         return BuildPath();
     }
 
-    void BreadthFirstSearch()
+    void BreadthFirstSearch(Vector2Int coordinates)
     {
         // Clear the previous path
         frontier.Clear();
         reached.Clear();
 
+        startNode.isWalkable = true;
+        destinationNode.isWalkable = true;
+
         bool isSearching = true;
 
         // Add the starting node as the first item of the queue
-        frontier.Enqueue(startNode);
+        frontier.Enqueue(grid[coordinates]);
         // At the beginning we've already reached the starting node, because it's... starting node. Duh.
-        reached.Add(startNode.coordinates, startNode);
+        reached.Add(coordinates, grid[coordinates]);
 
         // Then we start exploring the surrounding nodes as long as there's new nodes to be discovered
         while (frontier.Count > 0 && isSearching)
@@ -83,7 +91,7 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-    void  ExploreNeighbors()
+    void ExploreNeighbors()
     {
         List<Node> neighbors = new List<Node>();
 
@@ -153,6 +161,11 @@ public class Pathfinder : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void NotifyReceivers()
+    {
+        BroadcastMessage("RecalculatePath", false, SendMessageOptions.DontRequireReceiver);
     }
 
 }

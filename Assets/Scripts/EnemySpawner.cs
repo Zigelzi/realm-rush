@@ -9,16 +9,16 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] [Range(0.5f, 30f)] float spawnInterval = 3f;
     [SerializeField] bool spawningEnabled = true;
 
-    GameObject pathParent;
     GameObject[] objectPool;
-    Transform spawnPosition;
+    Vector3 spawnPosition;
     GameManager gameManager;
+    
 
     void Awake()
     {
-        pathParent = GameObject.FindGameObjectWithTag("Path");
         gameManager = FindObjectOfType<GameManager>();
-        spawnPosition = pathParent.transform.GetChild(0).transform;
+
+        SetSpawnPosition();
         PopulatePool();
     }
 
@@ -28,12 +28,19 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemies());
     }
 
+    void SetSpawnPosition()
+    {
+        GridManager gridManager = FindObjectOfType<GridManager>();
+        Pathfinder pathFinder = FindObjectOfType<Pathfinder>();
+        spawnPosition = gridManager.GetPositionFromCoordinates(pathFinder.StartCoordinates);
+    }
+
     void PopulatePool()
     {
         objectPool = new GameObject[poolSize];
         for (int i = 0; i < objectPool.Length; i++)
         {
-            objectPool[i] = Instantiate(enemyPrefab, spawnPosition.position, spawnPosition.rotation, transform);
+            objectPool[i] = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, transform);
             objectPool[i].SetActive(false);
         }
     }

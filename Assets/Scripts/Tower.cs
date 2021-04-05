@@ -5,6 +5,10 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     [SerializeField] [Range(0, 50)] int buildCost = 25;
+    [Tooltip("Build time in seconds")]
+    [SerializeField] [Range(0, 10)] int buildDuration = 3;
+
+    IEnumerator buildTower;
 
     void Start()
     {
