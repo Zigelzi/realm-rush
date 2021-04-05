@@ -36,7 +36,15 @@ public class Tile : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (isPlaceable && !HasBuilding())
+        Node node = gridManager.GetNode(coordinates);
+
+        if (node == null)
+        {
+            Debug.Log("Trying to place tower outside the grid");
+            return;
+        }
+
+        if (node.isWalkable && !HasBuilding())
         {
             bool towerBuilt = towerPrefab.Build(towerPrefab, this);
             if (towerBuilt)

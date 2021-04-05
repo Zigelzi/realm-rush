@@ -30,7 +30,7 @@ public class Pathfinder : MonoBehaviour
         
     }
 
-    private void Start()
+    void Start()
     {
         if (gridManager != null)
         {
@@ -40,9 +40,16 @@ public class Pathfinder : MonoBehaviour
             destinationNode = grid[destinationCoordinates];
             destinationNode.isDestination = true;
         }
-        
+
+
+        GetNewPath();
+    }
+
+    public List<Node> GetNewPath()
+    {
+        gridManager.ResetNodes();
         BreadthFirstSearch();
-        BuildPath();
+        return BuildPath();
     }
 
     void BreadthFirstSearch()
@@ -76,7 +83,7 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-    void ExploreNeighbors()
+    void  ExploreNeighbors()
     {
         List<Node> neighbors = new List<Node>();
 
@@ -127,6 +134,25 @@ public class Pathfinder : MonoBehaviour
 
     }
 
-    
+    public bool WillBlockPath(Vector2Int coordinates)
+    {
+        if (grid.ContainsKey(coordinates))
+        {
+            bool previousState = grid[coordinates].isWalkable;
+
+            grid[coordinates].isWalkable = false;
+            List<Node> newPath = GetNewPath();
+            grid[coordinates].isWalkable = previousState;
+
+            if (newPath.Count <= 1)
+            {
+                GetNewPath();
+                Debug.Log("Placing tower in here is not allowed. It would block the path");
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 }

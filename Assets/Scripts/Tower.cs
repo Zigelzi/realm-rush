@@ -44,7 +44,11 @@ public class Tower : MonoBehaviour
     {
         bool buildingSuccesful;
         Bank bank = FindObjectOfType<Bank>();
-             
+        GridManager gridmanager = FindObjectOfType<GridManager>(); ;
+        Pathfinder pathFinder = FindObjectOfType<Pathfinder>();
+        Vector2Int coordinates;
+
+        coordinates = gridmanager.GetCoordinatesFromPosition(tile.transform.position);
 
         if (bank == null)
         {
@@ -53,13 +57,13 @@ public class Tower : MonoBehaviour
             return buildingSuccesful;
         }
 
-        if (IsBuildable(tile) && bank.CanAffort(buildCost))
+        if (IsBuildable(tile) && bank.CanAffort(buildCost) && !pathFinder.WillBlockPath(coordinates) )
         {
             // Build the tower
             Instantiate(tower, tile.transform.position, tile.transform.rotation, tile.transform);
             bank.Withdraw(buildCost);
 
-            BlockTile(tile);
+            BlockNodeOn(tile);
 
             buildingSuccesful = true;
             return buildingSuccesful;
@@ -69,7 +73,7 @@ public class Tower : MonoBehaviour
         return buildingSuccesful;
     }
 
-    private void BlockTile(Tile tile)
+    private void BlockNodeOn(Tile tile)
     {
         GridManager gridmanager;
         gridmanager = FindObjectOfType<GridManager>();
